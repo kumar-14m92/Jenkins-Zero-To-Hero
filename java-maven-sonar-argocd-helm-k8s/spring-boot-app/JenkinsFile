@@ -1,7 +1,7 @@
 pipeline {
   agent {
     docker {
-      image 'marcellodesales/alpine-maven-docker:latest'
+      image 'shivakumarswamy/alpine-maven-docker-cli:latest'
       args '--user root -v /var/run/docker.sock:/var/run/docker.sock'
     }
   }
