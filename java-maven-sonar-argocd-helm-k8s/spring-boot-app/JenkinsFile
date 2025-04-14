@@ -4,18 +4,9 @@ pipeline {
       image 'kumar14m/maven-docker-agent:latest'
       label '' // optional, but keeps it clean
       args '--user root -v /var/run/docker.sock:/var/run/docker.sock'
-      reuseNode false // ⬅️ This forces Jenkins to pull the latest image
+      reuseNode false // This forces Jenkins to pull the latest image
     }
   }
-agent {
-  docker {
-    image 'kumar14m/maven-docker-agent:latest'
-    label '' // optional, but keeps it clean
-    args '--user root -v /var/run/docker.sock:/var/run/docker.sock'
-    reuseNode false // ⬅️ This forces Jenkins to pull the latest image
-  }
-}
-
 
   stages {
     stage('Checkout') {
