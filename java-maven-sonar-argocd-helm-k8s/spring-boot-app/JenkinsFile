@@ -49,16 +49,12 @@ pipeline {
       }
     }
 
-    // ✅ This stage overrides the global Docker agent
     stage('Update Deployment File') {
-      agent { label '' } // Use master/any label or leave it blank to use the host
       environment {
         GIT_REPO_NAME = "Jenkins-Zero-To-Hero"
         GIT_USER_NAME = "kumar-14m92"
       }
       steps {
-        checkout scm
-
         withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
           sh '''
             git config user.email "kumar.14m92@gmail.com"
