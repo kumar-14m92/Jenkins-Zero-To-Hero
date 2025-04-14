@@ -2,10 +2,10 @@ FROM maven:3.9.6-eclipse-temurin-17-alpine
 
 USER root
 
-# Install docker CLI
-RUN apk add --no-cache docker-cli
+# Install Docker CLI and Git
+RUN apk add --no-cache docker-cli git
 
-# Verify tools
-RUN mvn -v && docker -v
+# Optional: Confirm tools are installed
+RUN mvn -v && docker -v && git --version
 
 CMD ["/bin/sh"]
