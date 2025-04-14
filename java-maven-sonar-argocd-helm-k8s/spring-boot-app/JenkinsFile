@@ -55,6 +55,7 @@ pipeline {
         GIT_USER_NAME = "kumar-14m92"
       }
       steps {
+        git branch: 'main', url: 'https://github.com/kumar-14m92/Jenkins-Zero-To-Hero.git'
         withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
           sh '''
             git config user.email "kumar.14m92@gmail.com"
