@@ -1,11 +1,14 @@
-FROM maven:3.9.6-eclipse-temurin-17-alpine
+# Use a lightweight base image with Java 11 runtime
+FROM adoptopenjdk/openjdk11:alpine-jre
 
-USER root
+# Pass the built JAR path as a build-time argument
+ARG artifact=target/spring-boot-web.jar
 
-# Install Docker CLI and Git
-RUN apk add --no-cache docker-cli git
+# Set working directory inside the container
+WORKDIR /opt/app
 
-# Optional: Confirm tools are installed
-RUN mvn -v && docker -v && git --version
+# Copy the JAR file into the container
+COPY ${artifact} app.jar
 
-CMD ["/bin/sh"]
+# Run the application
+ENTRYPOINT ["java", "-jar", "app.jar"]
