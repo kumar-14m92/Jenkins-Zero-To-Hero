@@ -1,13 +1,11 @@
-# You can change this base image to anything else
-# But make sure to use the correct version of Java
-FROM adoptopenjdk/openjdk11:alpine-jre
+FROM maven:3.9.6-eclipse-temurin-17-alpine
 
-# Simply the artifact path
-ARG artifact=target/spring-boot-web.jar
+USER root
 
-WORKDIR /opt/app
+# Install docker CLI
+RUN apk add --no-cache docker-cli
 
-COPY ${artifact} app.jar
+# Verify tools
+RUN mvn -v && docker -v
 
-# This should not be changed
-ENTRYPOINT ["java","-jar","app.jar"]
+CMD ["/bin/sh"]
